@@ -1,9 +1,13 @@
 import './App.css'
+import { useRoutes } from 'react-router-dom'
+import { routes } from './routes/navigation.jsx'
 
 function App() {
+  const navElements = useRoutes(routes)
   return (
     <>
-      <h1>Hello World</h1>
+      <header>Task Manager</header>
+      {navElements}
     </>
   )
 }
