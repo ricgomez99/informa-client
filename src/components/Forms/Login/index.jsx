@@ -2,6 +2,9 @@ import { Input } from '../Input'
 import { useState } from 'react'
 import { ComponentLayout } from '../../Layout/ComponentLayot'
 import styles from '../Forms.module.css'
+import { useAuth } from '../../../hooks/useAuth'
+import { Navigate } from 'react-router'
+import { logInUser } from '../../../lib/helpers'
 
 export function Login() {
   const [query, setQuery] = useState({
@@ -10,6 +13,8 @@ export function Login() {
     password: '',
   })
 
+  const { isAuthenticated } = useAuth()
+
   const handleChange = (event) => {
     const { name, value } = event.target
     setQuery((prevFormData) => ({ ...prevFormData, [name]: value }))
@@ -17,10 +22,21 @@ export function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log({ query })
+    try {
+      const response = await logInUser({ query })
+      if (response) {
+        console.log(`User logged-in succesfully`)
+        console.table(response)
+      }
+    } catch (error) {
+      console.log(error, 'Something went wrong')
+    }
     setQuery({ username: '', email: '', password: '' })
   }
 
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />
+  }
   return (
     <ComponentLayout>
       <form className={styles.login_form} onSubmit={handleSubmit}>

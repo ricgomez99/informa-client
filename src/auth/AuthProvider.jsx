@@ -6,7 +6,7 @@ export const AuthContext = createContext({
 
 export function AuthProvider({ children }) {
   // eslint-disable-next-line no-unused-vars
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   return (
     <AuthContext.Provider value={{ isAuthenticated }}>
       {children}
