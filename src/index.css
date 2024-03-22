@@ -18,8 +18,9 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  flex-direction: column;
+  align-self: center;
+  max-width: 900px;
   min-height: 100vh;
 }
 
