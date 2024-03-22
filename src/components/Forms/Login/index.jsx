@@ -1,6 +1,7 @@
 import { Input } from '../Input'
 import { useState } from 'react'
-import { Layout } from '../../Layout'
+import { ComponentLayout } from '../../Layout/ComponentLayot'
+import styles from '../Forms.module.css'
 
 export function Login() {
   const [query, setQuery] = useState({
@@ -21,10 +22,10 @@ export function Login() {
   }
 
   return (
-    <Layout>
-      <form onSubmit={handleSubmit}>
-        <h3>Enter your credentials</h3>
-        <div>
+    <ComponentLayout>
+      <form className={styles.login_form} onSubmit={handleSubmit}>
+        <h5 className={styles.login_form_title}>Sign In</h5>
+        <div className={styles.login_form_input_container}>
           <label>Username</label>
           <Input
             type="text"
@@ -34,7 +35,7 @@ export function Login() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className={styles.login_form_input_container}>
           <label>Email</label>
           <Input
             type="email"
@@ -44,7 +45,7 @@ export function Login() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className={styles.login_form_input_container}>
           <label>Password</label>
           <Input
             type="password"
@@ -56,6 +57,6 @@ export function Login() {
         </div>
         <button type="submit">submit</button>
       </form>
-    </Layout>
+    </ComponentLayout>
   )
 }

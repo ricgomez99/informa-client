@@ -1,0 +1,13 @@
+.home_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.home_main_text,
+.home_getstarted {
+    text-align: left;
+}

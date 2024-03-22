@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom'
+import styles from './Navlink.module.css'
 
 export function Navlink({ path, children }) {
-  return <Link to={path}>{children}</Link>
+  return (
+    <Link className={styles.navlink} to={path}>
+      {children}
+    </Link>
+  )
 }

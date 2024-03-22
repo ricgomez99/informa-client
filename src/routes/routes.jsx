@@ -4,19 +4,32 @@ import { About } from '../pages/About'
 import { Dashboard } from '../pages/Dashboard'
 import { ProtectedRoutes } from './ProtectedRoutes'
 import { LoginPage } from '../pages/Login'
+import { AppLayout } from '../components/Layout/AppLayout/AppLayout'
 
 export const routes = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: (
+      <AppLayout>
+        <Home />
+      </AppLayout>
+    ),
   },
   {
     path: '/about',
-    element: <About />,
+    element: (
+      <AppLayout>
+        <About />
+      </AppLayout>
+    ),
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: (
+      <AppLayout>
+        <LoginPage />
+      </AppLayout>
+    ),
   },
   {
     path: '/',
@@ -24,7 +37,11 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: (
+          <AppLayout>
+            <Dashboard />
+          </AppLayout>
+        ),
       },
     ],
   },
