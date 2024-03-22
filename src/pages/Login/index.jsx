@@ -1,9 +1,9 @@
 import { Login } from '../../components/Forms/Login'
+import styles from './Login.module.css'
 
 export function LoginPage() {
   return (
-    <article>
-      <h3>Please Login here...</h3>
+    <article className={styles.login_page}>
       <Login />
     </article>
   )

@@ -1,0 +1,11 @@
+.navlink {
+    text-decoration: none;
+    color: rgba(228, 224, 224, 0.87);
+    font-weight: 500;
+    transition: all 0.5s ease-in-out;
+}
+
+.navlink:hover {
+    color: #fff;
+    transition: all 0.5s ease-in-out;
+}
