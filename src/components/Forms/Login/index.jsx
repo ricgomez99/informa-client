@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ComponentLayout } from '../../Layout/ComponentLayot'
 import styles from '../Forms.module.css'
 import { useAuth } from '../../../hooks/useAuth'
-import { Navigate } from 'react-router'
+import { Navigate, useNavigate } from 'react-router'
 import { logInUser } from '../../../lib/helpers'
 
 export function Login() {
@@ -13,7 +13,8 @@ export function Login() {
     password: '',
   })
 
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, saveTokens } = useAuth()
+  const goTo = useNavigate()
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -25,8 +26,11 @@ export function Login() {
     try {
       const response = await logInUser({ query })
       if (response) {
+        const { access_code: accessCode, refresh_code: refreshCode } = response
         console.log(`User logged-in succesfully`)
-        console.table(response)
+        saveTokens({ accessCode, refreshCode })
+
+        goTo('/dashboard')
       }
     } catch (error) {
       console.log(error, 'Something went wrong')
