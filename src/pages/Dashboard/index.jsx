@@ -1,3 +1,7 @@
 export function Dashboard() {
-  return <h3>{`Welcome Back!`}</h3>
+  return (
+    <section>
+      <h1>Welcome Back!</h1>
+    </section>
+  )
 }

@@ -5,6 +5,7 @@ import { Dashboard } from '../pages/Dashboard'
 import { ProtectedRoutes } from './ProtectedRoutes'
 import { LoginPage } from '../pages/Login'
 import { AppLayout } from '../components/Layout/AppLayout/AppLayout'
+import PersistLogin from '../components/PersistLogin'
 
 export const routes = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ export const routes = createBrowserRouter([
   },
   {
     path: '/',
-    element: <ProtectedRoutes />,
+    element: (
+      <PersistLogin>
+        <ProtectedRoutes />
+      </PersistLogin>
+    ),
     children: [
       {
         path: '/dashboard',

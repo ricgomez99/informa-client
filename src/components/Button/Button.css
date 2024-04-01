@@ -1,0 +1,33 @@
+.primary,
+.secondary {
+    padding: 12px 8px;
+    margin: 8px 0;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+    border: none;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: #f9f9f9;
+    color: #242424;
+}
+
+.primary:hover {
+    background-color: #000;
+    color: #f9f9f9;
+    transition: all 0.5s ease-in-out;
+}
+
+.secondary {
+    background-color: #000;
+    color: #f9f9f9;
+}
+
+.secondary:hover {
+    background-color: #f9f9f9;
+    color: #242424;
+    transition: all 0.5s ease-in-out;
+}

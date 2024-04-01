@@ -5,6 +5,7 @@ import styles from '../Forms.module.css'
 import { useAuth } from '../../../hooks/useAuth'
 import { Navigate, useNavigate } from 'react-router'
 import { logInUser } from '../../../lib/helpers'
+import { Button } from '../../Button'
 
 export function Login() {
   const [query, setQuery] = useState({
@@ -75,7 +76,9 @@ export function Login() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">submit</button>
+        <Button type="submit" className={'primary'}>
+          submit
+        </Button>
       </form>
     </ComponentLayout>
   )
