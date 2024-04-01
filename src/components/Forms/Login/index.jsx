@@ -2,6 +2,10 @@ import { Input } from '../Input'
 import { useState } from 'react'
 import { ComponentLayout } from '../../Layout/ComponentLayot'
 import styles from '../Forms.module.css'
+import { useAuth } from '../../../hooks/useAuth'
+import { Navigate, useNavigate } from 'react-router'
+import { logInUser } from '../../../lib/helpers'
+import { Button } from '../../Button'
 
 export function Login() {
   const [query, setQuery] = useState({
@@ -10,6 +14,9 @@ export function Login() {
     password: '',
   })
 
+  const { isAuthenticated, saveTokens } = useAuth()
+  const goTo = useNavigate()
+
   const handleChange = (event) => {
     const { name, value } = event.target
     setQuery((prevFormData) => ({ ...prevFormData, [name]: value }))
@@ -17,10 +24,24 @@ export function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log({ query })
+    try {
+      const response = await logInUser({ query })
+      if (response) {
+        const { access_code: accessCode, refresh_code: refreshCode } = response
+        console.log(`User logged-in succesfully`)
+        saveTokens({ accessCode, refreshCode })
+
+        goTo('/dashboard')
+      }
+    } catch (error) {
+      console.log(error, 'Something went wrong')
+    }
     setQuery({ username: '', email: '', password: '' })
   }
 
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />
+  }
   return (
     <ComponentLayout>
       <form className={styles.login_form} onSubmit={handleSubmit}>
@@ -55,7 +76,9 @@ export function Login() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">submit</button>
+        <Button type="submit" className={'primary'}>
+          submit
+        </Button>
       </form>
     </ComponentLayout>
   )
